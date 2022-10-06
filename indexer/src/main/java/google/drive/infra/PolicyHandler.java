@@ -40,6 +40,23 @@ public class PolicyHandler{
 
     }
 
+    @StreamListener(value=KafkaProcessor.INPUT, condition="headers['type']=='FileDeleted'")
+    public void wheneverFileDeleted_DeleteIndexer(@Payload FileDeleted fileDeleted){
+
+        FileDeleted event = fileDeleted;
+        System.out.println("\n\n##### listener DeleteIndexer : " + fileDeleted + "\n\n");
+
+
+        
+
+        // Sample Logic //
+        Index.deleteIndexer(event);
+        
+
+        
+
+    }
+
 }
 
 
